@@ -111,7 +111,8 @@ export default class Element {
    */
   emit(event, ...data) {
     if (this.events) {
-      this.events.emit(`${this.options.namespace}.${event}`, ...data);
+      const fullPath = (this.options && this.options.namespace) ? `${this.options.namespace}.${event}` : `${event}`;
+      this.events.emit(fullPath, ...data);
     }
   }
 
